@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,4 +8,21 @@
     tools:context="com.activities.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-</android.support.constraint.ConstraintLayout>
+
+    <devlight.io.library.ntb.NavigationTabBar
+        android:id="@+id/ntb_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="#b4b4b4"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        app:ntb_badge_gravity="bottom"
+        app:ntb_badge_position="right"
+        app:ntb_scaled="true"
+        app:ntb_title_size="12dp"
+        app:ntb_tinted="true"
+        app:ntb_title_mode="all"
+        app:ntb_titled="true"
+        app:ntb_swiped="false" />
+
+</RelativeLayout>

@@ -9,4 +9,12 @@
 
 
     <string name="copyright">Copyright © 2018, Tripura Now.\nAll Rights Reserved.</string>
+
+    <string-array name="tab_bar_item_colors">
+        <item>#e80f0c</item>
+        <item>#9d244f</item>
+        <item>#f16908</item>
+        <item>#fba20c</item>
+        <item>#1049a6</item>
+    </string-array>
 </resources>
