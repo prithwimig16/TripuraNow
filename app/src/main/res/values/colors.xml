@@ -15,4 +15,5 @@
     <color name="colorSeffron">#ff9933</color>
     <color name="tabbarbgcolor">#dcdcdc</color>
     <color name="tabbardefaultitemcolor">#808080</color>
+    <color name="com_facebook_likeview_text_color">#6a7180</color>
 </resources>

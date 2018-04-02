@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:id="@+id/view"
+        android:layout_height="?attr/actionBarSize">
+
+    </View>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view"
+
+        android:id="@+id/news_list_recycler"/>
+
+
+
+</RelativeLayout>
