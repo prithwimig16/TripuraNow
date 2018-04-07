@@ -3,6 +3,7 @@ package com.activities;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,6 +31,7 @@ import com.models.News;
 import com.networks.TnHttpCom;
 import com.networks.TnHtttpComCallBack;
 import com.tripuranow.R;
+import com.utils.Config;
 import com.utils.Utils;
 
 import org.json.JSONArray;
@@ -47,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Context context;
     BottomNavigationView bottomNavigationView;
     String currTag ;
+    boolean isShare=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,32 +112,52 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         Fragment selectedFragment = null;
         if (id == R.id.nav_news) {
-
+            isShare=false;
             selectedFragment = new NewsFragment();
             currTag = "news";
         } else if (id == R.id.nav_buzz) {
+            isShare=false;
             selectedFragment = new BuzzFragment();
             currTag = "buzz";
 
         } else if (id == R.id.nav_live) {
+            isShare=false;
             selectedFragment = new LiveFragment();
             currTag = "live";
 
         } else if (id == R.id.nav_share) {
+            isShare=true;
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT,
+                    "Hey, download Tripura Now -immediate news updates. Click this link to download - "+ Config.getSharedInstance().PLAYSTORE_URL);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+
+           // AnalyticsHandler.getSharedInstance().logEvent(MainActivity.this,"Menu","Share_App","Tapped",1);
+
 
         } else if (id == R.id.nav_send) {
 
         }
 
         currFragment = selectedFragment;
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.content_frame, currFragment,currTag);
-                transaction.commit();
-            }
-        });
+
+        if(!isShare) {
+            runOnUiThread(new Runnable() {
+
+                @Override
+                public void run() {
+
+
+                    android.support.v4.app.FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.content_frame, currFragment, currTag);
+                    transaction.commit();
+
+                }
+            });
+
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -152,25 +175,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
 
-                    case R.id.cricket_tab:
+                    case R.id.news_tab:
 
                         if(currTag.equals("news")){
                             return true;
                         }
+                        isShare=false;
                         selectedFragment = new NewsFragment();
                         currTag = "news";
                         break;
-                    case R.id.football_tab:
+                    case R.id.buzz_tab:
                         if(currTag.equals("buzz")){
                             return true;
                         }
+                        isShare=false;
                         selectedFragment = new BuzzFragment();
                         currTag = "buzz";
                         break;
-                    case R.id.tennis_tab:
+                    case R.id.live_tab:
                         if(currTag.equals("live")){
                             return true;
                         }
+                        isShare=false;
                         selectedFragment = new LiveFragment();
                         currTag = "live";
                         break;

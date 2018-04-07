@@ -2,20 +2,20 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/cricket_tab"
+        android:id="@+id/news_tab"
         android:icon="@drawable/ic_menu_camera"
         android:title="News"
 
         />
     <item
-        android:id="@+id/football_tab"
+        android:id="@+id/buzz_tab"
         android:icon="@drawable/ic_menu_gallery"
         android:title="Buzz"
 
         />
 
     <item
-        android:id="@+id/tennis_tab"
+        android:id="@+id/live_tab"
         android:icon="@drawable/ic_menu_camera"
         android:title="Live"
          />

@@ -68,7 +68,7 @@ public class Config {
 
     public String B_AUTH="";
 
-    public String PLAYSTORE_URL="";
+    public String PLAYSTORE_URL="Play stpre";
 
 
 
