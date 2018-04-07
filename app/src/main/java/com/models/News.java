@@ -16,13 +16,15 @@ public class News implements Parcelable {
     protected String newsContent;
     protected String newsDate;
     protected String newsImageUrl;
+    protected String videoUrl;
 
     public News(JSONObject jsonObject){
         this.newsId=jsonObject.optString("newsId");
-        this.newsHeadLine=jsonObject.optString("newsHeadLine");
-        this.newsContent=jsonObject.optString("newsContent");
-        this.newsDate=jsonObject.optString("newsDate");
-        this.newsImageUrl=jsonObject.optString("newsImageUrl");
+        this.newsHeadLine=jsonObject.optString("headline");
+        this.newsContent=jsonObject.optString("content");
+        this.newsDate=jsonObject.optString("date");
+        this.newsImageUrl=jsonObject.optString("image_url");
+        this.videoUrl=jsonObject.optString("video_url");
     }
 
     protected News(Parcel in) {
@@ -31,6 +33,7 @@ public class News implements Parcelable {
         newsContent = in.readString();
         newsDate = in.readString();
         newsImageUrl = in.readString();
+        videoUrl=in.readString();
     }
 
     public static final Creator<News> CREATOR = new Creator<News>() {
@@ -64,6 +67,9 @@ public class News implements Parcelable {
     public String getNewsImageUrl() {
         return newsImageUrl;
     }
+    public String getVideoUrl() {
+        return videoUrl;
+    }
 
 
     @Override
@@ -78,5 +84,6 @@ public class News implements Parcelable {
         dest.writeString(newsContent);
         dest.writeString(newsDate);
         dest.writeString(newsImageUrl);
+        dest.writeString(videoUrl);
     }
 }

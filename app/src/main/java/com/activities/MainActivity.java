@@ -2,6 +2,7 @@ package com.activities;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,10 +22,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.adapters.TabsFragmentAdapter;
+import com.android.volley.toolbox.Volley;
 import com.fragments.BuzzFragment;
 import com.fragments.LiveFragment;
 import com.fragments.NewsFragment;
+import com.models.News;
+import com.networks.TnHttpCom;
+import com.networks.TnHtttpComCallBack;
 import com.tripuranow.R;
+import com.utils.Utils;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -33,13 +42,20 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     TabsFragmentAdapter tabsFragmentAdapter;
     final String NEWS="News";
+
     private Fragment currFragment;
+    Context context;
     BottomNavigationView bottomNavigationView;
     String currTag ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Utils.volleyRequestQueue = Volley.newRequestQueue(this);
+        this.context=this;
+
+
+
         initUI();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -182,4 +198,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
+
 }
