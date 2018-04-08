@@ -1,14 +1,18 @@
 package com.models;
 
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import org.json.JSONObject;
 
 /**
  * Created by Prithwi on 03/04/18.
  */
-
+@Entity
 public class News implements Parcelable {
 
     protected String newsId;
@@ -18,8 +22,35 @@ public class News implements Parcelable {
     protected String newsImageUrl;
     protected String videoUrl;
 
+
+
+    public void setNewsId(String newsId) {
+        this.newsId = newsId;
+    }
+
+    public void setNewsHeadLine(String newsHeadLine) {
+        this.newsHeadLine = newsHeadLine;
+    }
+
+    public void setNewsContent(String newsContent) {
+        this.newsContent = newsContent;
+    }
+
+    public void setNewsDate(String newsDate) {
+        this.newsDate = newsDate;
+    }
+
+    public void setNewsImageUrl(String newsImageUrl) {
+        this.newsImageUrl = newsImageUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
+    }
+
+
     public News(JSONObject jsonObject){
-        this.newsId=jsonObject.optString("newsId");
+        this.newsId=jsonObject.optString("news_id");
         this.newsHeadLine=jsonObject.optString("headline");
         this.newsContent=jsonObject.optString("content");
         this.newsDate=jsonObject.optString("date");
@@ -35,6 +66,8 @@ public class News implements Parcelable {
         newsImageUrl = in.readString();
         videoUrl=in.readString();
     }
+
+    public News(){}
 
     public static final Creator<News> CREATOR = new Creator<News>() {
         @Override
