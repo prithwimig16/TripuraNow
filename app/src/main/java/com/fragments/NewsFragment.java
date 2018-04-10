@@ -138,7 +138,7 @@ public class NewsFragment extends Fragment implements TnHtttpComCallBack {
     }
 
     private void newtworkcall() {
-        TnHttpCom.getNewInstance(getActivity(), this).callNewsService();
+        TnHttpCom.getNewInstance(getActivity(), this).callNewsService("data");
     }
 
     private boolean isNetworkAvailable() {

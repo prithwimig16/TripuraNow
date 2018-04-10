@@ -1,6 +1,5 @@
 package com.adapters;
 
-import android.arch.lifecycle.LiveData;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -13,27 +12,23 @@ import android.widget.TextView;
 import com.activities.NewsActivityDetails;
 import com.bumptech.glide.Glide;
 import com.models.Gyan;
-import com.models.News;
 import com.tripuranow.R;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
- * Created by Prithwi on 03/04/18.
+ * Created by Prithwi on 11/04/18.
  */
 
-public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.MyviewHolder> {
+public class GyanListAdapter extends RecyclerView.Adapter<GyanListAdapter.MyGyanviewHolder> {
     Context mContext;
-    public ArrayList<News> newsList;
+    public ArrayList<Gyan> gyanList;
 
 
-
-    public NewsListAdapter(Context context, ArrayList<News> newsList) {
+    public GyanListAdapter(Context context, ArrayList<Gyan> gyanList) {
         this.mContext = context;
-        this.newsList = new ArrayList<>();
-        this.newsList = newsList;
+        this.gyanList = new ArrayList<>();
+        this.gyanList = gyanList;
         //Collections.reverse(this.newsList);
     }
 
@@ -41,31 +36,31 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Myview
 
 
     @Override
-    public NewsListAdapter.MyviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyGyanviewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.new_single_item, parent, false);
 
-        return new NewsListAdapter.MyviewHolder(itemView);
+        return new GyanListAdapter.MyGyanviewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(NewsListAdapter.MyviewHolder holder, final int position) {
+    public void onBindViewHolder(MyGyanviewHolder holder, final int position) {
 
-        if (newsList.size() > 0) {
-            final News news = newsList.get(position);
+        if (gyanList.size() > 0) {
+            final Gyan gyan = gyanList.get(position);
 
-            holder.tvHeadline.setText(news.getNewsHeadLine() + " |");
-            holder.tvNewsDate.setText(news.getNewsDate());
-            if (news.getNewsImageUrl() != null) {
-                Glide.with(mContext).load(news.getNewsImageUrl()).into(holder.newsImage);
+            holder.tvHeadline.setText(gyan.getGyan_headline() + " |");
+            holder.tvNewsDate.setText(gyan.getGyan_date());
+            if (gyan.getGyan_image_url() != null) {
+                Glide.with(mContext).load(gyan.getGyan_image_url()).into(holder.newsImage);
             }
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(mContext, NewsActivityDetails.class);
-                    intent.putExtra("imageUrl", newsList.get(position).getNewsImageUrl());
-                    intent.putExtra("content", newsList.get(position).getNewsContent());
+                    intent.putExtra("imageUrl", gyanList.get(position).getGyan_image_url());
+                    intent.putExtra("content", gyanList.get(position).getGyan_content());
                     mContext.startActivity(intent);
                 }
             });
@@ -74,15 +69,15 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Myview
 
     @Override
     public int getItemCount() {
-        return this.newsList.size();
+        return this.gyanList.size();
     }
 
-    public class MyviewHolder extends RecyclerView.ViewHolder {
+    public class MyGyanviewHolder extends RecyclerView.ViewHolder {
 
         TextView tvHeadline, tvNewsDate;
         ImageView newsImage;
 
-        public MyviewHolder(View itemView) {
+        public MyGyanviewHolder(View itemView) {
             super(itemView);
             tvHeadline = (TextView) itemView.findViewById(R.id.tv_heading);
             tvNewsDate = (TextView) itemView.findViewById(R.id.tv_date);
@@ -92,3 +87,4 @@ public class NewsListAdapter extends RecyclerView.Adapter<NewsListAdapter.Myview
         }
     }
 }
+

@@ -3,20 +3,20 @@
 
     <item
         android:id="@+id/news_tab"
-        android:icon="@drawable/ic_menu_camera"
+        android:icon="@drawable/news"
         android:title="News"
 
         />
     <item
         android:id="@+id/buzz_tab"
-        android:icon="@drawable/ic_menu_gallery"
-        android:title="Buzz"
+        android:icon="@drawable/gyan"
+        android:title="Gyan"
 
         />
 
     <item
-        android:id="@+id/live_tab"
-        android:icon="@drawable/ic_menu_camera"
-        android:title="Live"
+        android:id="@+id/dharma_tab"
+        android:icon="@drawable/dharma"
+        android:title="Dharma"
          />
 </menu>

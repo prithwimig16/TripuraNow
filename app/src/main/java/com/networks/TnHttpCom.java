@@ -29,11 +29,13 @@ public class TnHttpCom {
     private TnHttpCom(){}
 
     public static final int NEWS_SERVICE=1000;
+    public static final int GYAN_SERVICE=1001;
+    public static final int DHARMA_SERVICE=1002;
      int currentSeq=0;
     private Context context;
     private TnHtttpComCallBack callback;
     private int tag;
-
+    private String table_name;
     private JSONObject values;
     private JSONArray values1;
     private String finalUrl;
@@ -45,7 +47,6 @@ public class TnHttpCom {
     public TnHttpCom(Context context) {
         this.context = context;
         this.callback = (TnHtttpComCallBack) context;
-        this.finalUrl = "https://tripura-now.firebaseio.com/data.json?auth=h6BKXmFvAqyrVcELkT2iaH01xjV1ZLNc9fUTlzyK";
         this.values = new JSONObject();
 
     }
@@ -53,7 +54,6 @@ public class TnHttpCom {
     public TnHttpCom(Context context, TnHtttpComCallBack fragment) {
         this.context = context;
         this.callback = fragment;
-        this.finalUrl = "https://tripura-now.firebaseio.com/data.json?auth=h6BKXmFvAqyrVcELkT2iaH01xjV1ZLNc9fUTlzyK";
         this.values = new JSONObject();
     }
 
@@ -68,6 +68,7 @@ public class TnHttpCom {
     }
 
     private void processConnection() {
+        this.finalUrl="https://tripura-now.firebaseio.com/"+this.table_name+".json?auth=h6BKXmFvAqyrVcELkT2iaH01xjV1ZLNc9fUTlzyK";
         Utils.consoleLog(TnHttpCom.class,"Post Data:"+this.values.toString());
         final JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, this.finalUrl, this.values, new Response.Listener<JSONObject>()
         {
@@ -167,15 +168,28 @@ public class TnHttpCom {
     }
 
 
-    public void callNewsService(){
+    public void callNewsService(String tableName){
 
 
             this.tag=NEWS_SERVICE;
-
+            this.table_name=tableName;
             this.processConnection();
+    }
+
+    public void callGyanService(String tableName){
 
 
+        this.tag=GYAN_SERVICE;
+        this.table_name=tableName;
+        this.processConnection();
+    }
 
-        }
+    public void callDharmaService(String tableName){
+
+
+        this.tag=DHARMA_SERVICE;
+        this.table_name=tableName;
+        this.processConnection();
+    }
 
 }

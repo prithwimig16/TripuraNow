@@ -21,7 +21,7 @@ public class NewsActivityDetails extends AppCompatActivity {
         setContentView(R.layout.activity_news_details);
 
         this.imageUrl=getIntent().getStringExtra("imageUrl");
-        this.newsContent=getIntent().getStringExtra("newsContent");
+        this.newsContent=getIntent().getStringExtra("content");
 
         init();
 
